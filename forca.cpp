@@ -48,20 +48,81 @@ bool nao_enforcou()
     return (lixo.size() < 5); 
 }
 
-int main()
+void abertura_jogo()
 {
     std::cout << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << std::endl;
     std::cout << "=-=-Bem vindo ao jogo da forca!=-=-==" << std::endl;
     std::cout << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << std::endl;
+}
+
+void imprime_erros(std::vector<char> lixo)
+{
+    std::cout <<"Lixo: ";
+    
+    for(auto letraErrada : lixo)
+    {
+        std::cout << letraErrada << " ";
+    }
+
+    std::cout << std::endl;
+}
+
+void imprime_palavra(std::string PALAVRA_SECRETA)
+{
+    for(char letra : PALAVRA_SECRETA)
+    {
+        if(chutou[letra])
+        {
+            std::cout << letra << " ";
+
+        }
+        else
+        {
+            std::cout << "_ ";
+        }
+        
+    } 
+}
+
+void chuta(std::string PALAVRA_SECRETA)
+{
+    char chute;
+    std::cout <<"Escolha uma palavra: ";
+    std::cin >> chute;
+
+    if(confereLetra(chute, PALAVRA_SECRETA))
+    {
+        chutou[chute] = true;
+    }
+    else
+    {
+        chutou[chute] = false;
+        lixo.push_back(chute);
+    }
+}
+
+int main()
+{
+    abertura_jogo();
+    
+    
     std::string const PALAVRA_SECRETA = "MELANCIA";
     
-    
-    char chute;
 
     while((nao_enforcou()) && (nao_acertou(PALAVRA_SECRETA)))
     {   
+        imprime_erros(lixo);
+
+        imprime_palavra(PALAVRA_SECRETA);
+
         std::cout << std::endl;
         std::cout << std::endl;
+
+        chuta(PALAVRA_SECRETA);
+
+        
+
+        
 
         for(char letra : PALAVRA_SECRETA)
         {
@@ -79,28 +140,10 @@ int main()
         std::cout << std::endl;
         std::cout << std::endl;
 
-        std::cout <<"Lixo: ";
-        
-        for(auto letraErrada : lixo)
-        {
-            std::cout << letraErrada << " ";
-        }
-
-        std::cout << std::endl;
+       
 
 
-        std::cout <<"Escolha uma palavra: ";
-        std::cin >> chute;
-
-        if(confereLetra(chute, PALAVRA_SECRETA))
-        {
-            chutou[chute] = true;
-        }
-        else
-        {
-            chutou[chute] = false;
-            lixo.push_back(chute);
-        }
+       
 
         
     }
