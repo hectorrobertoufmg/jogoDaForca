@@ -99,30 +99,22 @@ void chuta(std::string PALAVRA_SECRETA)
         chutou[chute] = false;
         lixo.push_back(chute);
     }
+    
+    std::cout << std::endl;
+    std::cout << std::endl;
 }
 
 int main()
 {
-    abertura_jogo();
-    
-    
     std::string const PALAVRA_SECRETA = "MELANCIA";
     
-
+    abertura_jogo();   
+    
     while((nao_enforcou()) && (nao_acertou(PALAVRA_SECRETA)))
     {   
         imprime_erros(lixo);
-
         imprime_palavra(PALAVRA_SECRETA);
-
-        std::cout << std::endl;
-        std::cout << std::endl;
-
         chuta(PALAVRA_SECRETA);
-
-        
-
-        
 
         for(char letra : PALAVRA_SECRETA)
         {
@@ -137,19 +129,13 @@ int main()
             }
             
         }
-        std::cout << std::endl;
-        std::cout << std::endl;
 
-       
-
-
-       
-
-        
+        std::cout << std::endl;    
     }
 
     std::cout << "Fim de jogo!" << std::endl;
     std::cout << "A palavra secreta era: " << PALAVRA_SECRETA << std::endl;
+
     if(nao_acertou(PALAVRA_SECRETA))
     {
         std::cout << "Voce perdeu!" << std::endl;
@@ -158,8 +144,6 @@ int main()
     {
         std::cout << "Você ganhou!" << std::endl;
     }
-
-
 
     return 0;
 }
