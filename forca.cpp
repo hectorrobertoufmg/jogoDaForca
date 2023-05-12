@@ -2,15 +2,21 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <fstream>
 
 
-// O chutou em um container map em que os elementos estão associados a 
-// uma chave e valor 
 
+// Cria um container do tipo map (só pode acessar elementos via key e nao index)
 std::map<char, bool> chutou;
 
+// vector é um outro tipo de container que permite o acesso via index, mas tem certas
+// o peração que ele não é muito bom, por exemplo, adicionar um elemento em algum lugar
+// no meio da lista.
 std::vector<char> lixo;
 
+// Funcao confereLetra() ela recebe dois parâmetros, o primeiro é o chute do usuário
+// O segundo é a letra secreta. Esta função corre a letra_secreta e vai comparando
+// Coma letra que o usuario chutou
 bool confereLetra(char chute, std::string letra_secreta)
 {
     for(char letra : letra_secreta)
@@ -27,6 +33,11 @@ bool confereLetra(char chute, std::string letra_secreta)
     
 }
 
+
+
+// Funcção que retorna um tipo bool. Esta função compara a letra que o usuário chutou
+// Se a letra tiver dentro do map, então o usário acertou, logo a funcao retorna false
+// Se a pesso errou, ela retorna true
 bool nao_acertou(std::string PALAVRA_SECRETA)
 {
     for(char letra : PALAVRA_SECRETA)
@@ -42,6 +53,7 @@ bool nao_acertou(std::string PALAVRA_SECRETA)
     return false;
 }
 
+// Se o número de letras for = 5, então ela desenhou o elemento e o bonito enforcou
 
 bool nao_enforcou()
 {
@@ -102,6 +114,26 @@ void chuta(std::string PALAVRA_SECRETA)
     
     std::cout << std::endl;
     std::cout << std::endl;
+}
+
+void le_arquivo()
+{
+    std::ifstream arquivo;
+    arquivo.open("palavras.txt");
+    
+    int quantidade_palavras;
+    
+    arquivo >> quantidade_palavras;
+
+    for(auto i = 0; i < quantidade_palavras; ++i)
+    {
+        std::string palavra_lida;
+
+        arquivo >> palavra_lida;
+
+    }
+
+
 }
 
 int main()
